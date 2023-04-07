@@ -18,6 +18,17 @@ app.use(function(req, res, next) {
 });
 
 app.use(bodyParser.json());
+app.get('/', (req, res, next) => {
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            name: 'name of your app',
+            version: '0.1.0'
+        }
+    });
+
+});
 app.use("/users",usersRoute)
 
 app.listen(process.env.PORT || PORT,()=>console.log(`server running on port:http://localhost:${PORT}`));
