@@ -3,7 +3,7 @@ import User from '../models/User.js';
 import mongodb from "mongodb"
 
 const findUser = async(authorization) => {
-    const decoded = JSON.parse(Buffer.from(authorization.split('.')[1], 'base64').toString())
+    const decoded = authorization ? JSON.parse(Buffer.from(authorization?.split('.')[1], 'base64').toString()) : ""
     var id = new mongodb.ObjectId(decoded.id);
     const user = await User.findById({ '_id': id }).exec();
     return user
